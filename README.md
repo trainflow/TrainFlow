@@ -1,6 +1,12 @@
-# trainflow
+# Trainflow
 
 A new Flutter project.
+
+## Setup
+1. Clone repository
+2. Run flutter pub get in your terminal or Android Studio (download dependencies);
+3. flutter pub run build_runner watch --delete-conflicting-outputs (to obtain generated files);
+4. Aaand you're good to go :D
 
 ## Getting Started
 
