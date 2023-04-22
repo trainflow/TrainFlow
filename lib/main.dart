@@ -49,6 +49,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int _reset = 0;
 
   void _incrementCounter() {
     setState(() {
@@ -61,6 +62,21 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _incrementReset() {
+    setState(() {
+      _reset++;
+    });
+  }
+
+  void _resetCounter() {
+    if (_counter > 1) {
+      setState(() {
+        _counter = 0;
+      });
+      _incrementReset();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -69,47 +85,69 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    const color = Color(0xffF4D03F);
+    const color2 = Color(0xff2E2E2E);
+    const title = "TrainFlow";
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      body: Container(
+        color: color,
+        alignment: Alignment.center, // where to position the child
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.85,
+          height: MediaQuery.of(context).size.height * 0.95,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20), color: color2),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: RichText(
+                      text: const TextSpan(children: [
+                    TextSpan(
+                        text: "Train",
+                        style: TextStyle(
+                            color: color,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 36)),
+                    TextSpan(
+                        text: "Flow",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 36))
+                  ]))),
+              const Padding(
+                padding: EdgeInsets.all(20),
+                child: TextField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    //<-- SEE HERE
+                    fillColor: Colors.white,
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: color, width: 4)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: color, width: 2)),
+                    labelText: 'Email',
+                    hintText: 'Enter Your Email',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: color,
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                    onPressed: () => {},
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+              )
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
