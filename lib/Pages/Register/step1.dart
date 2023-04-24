@@ -64,6 +64,7 @@ class _RegisterStep1State extends State<RegisterStep1> {
     const color2 = Color(0xff2E2E2E);
     const title = "TrainFlow";
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(

@@ -23,7 +23,7 @@ class RegisterStep2 extends StatefulWidget {
 class _RegisterStep2State extends State<RegisterStep2> {
   int _counter = 0;
   int _reset = 0;
-  int _activeStep = 1;
+  int _activeStep = 2;
 
   void _incrementCounter() {
     setState(() {
@@ -63,15 +63,23 @@ class _RegisterStep2State extends State<RegisterStep2> {
     const color2 = Color(0xff2E2E2E);
     const title = "TrainFlow";
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/background-image.png"), fit: BoxFit.cover),
+              image: AssetImage("assets/background-image.png"),
+              fit: BoxFit.cover),
         ),
         alignment: Alignment.center, // where to position the child
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.85,
-          height: MediaQuery.of(context).size.height * 0.95,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width * 0.85,
+          height: MediaQuery
+              .of(context)
+              .size
+              .height * 0.95,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20), color: color2),
           child: Column(
@@ -110,7 +118,8 @@ class _RegisterStep2State extends State<RegisterStep2> {
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: color, width: 2)),
                     labelText: 'Password',
-                    labelStyle: TextStyle(color: color, fontWeight: FontWeight.bold),
+                    labelStyle: TextStyle(
+                        color: color, fontWeight: FontWeight.bold),
                     hintText: 'Enter Your Password',
                   ),
                 ),
@@ -127,26 +136,63 @@ class _RegisterStep2State extends State<RegisterStep2> {
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: color, width: 2)),
                     labelText: 'Confirm Password',
-                    labelStyle: TextStyle(color: color, fontWeight: FontWeight.bold),
+                    labelStyle: TextStyle(
+                        color: color, fontWeight: FontWeight.bold),
                     hintText: 'Enter Your Password',
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(20),
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: color,
-                      minimumSize: Size.fromHeight(
-                        MediaQuery.of(context).size.height *
-                            0.05, // dynamically assign height
-                      ),
-                    ),
-                    onPressed: () => {},
-                    child: const Text(
-                      'Sign Up',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )),
+              SizedBox(height: 300),
+              Row(
+                children: [
+                  Expanded(
+                      child:
+                      Padding(
+                        padding: EdgeInsets.only(left: 20, right: 5),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              minimumSize: Size.fromHeight(
+                                MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height *
+                                    0.05, // dynamically assign height
+                              ),
+                            ),
+                            onPressed: () => {
+                              Navigator.pop(context)
+                            },
+                            child: const Text(
+                              'Back',
+                              style: TextStyle(fontWeight: FontWeight.bold, color: color ),
+                            )),
+                      )
+                  ),
+
+                  Expanded(
+                    child:
+                    Padding(
+                    padding:  EdgeInsets.only(right: 20, left: 5),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: color,
+                          minimumSize: Size.fromHeight(
+                            MediaQuery
+                                .of(context)
+                                .size
+                                .height *
+                                0.05, // dynamically assign height
+                          ),
+                        ),
+                        onPressed: () => {},
+                        child: const Text(
+                          'Sign Up',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )),
+                    )
+                  ),
+                ],
               ),
               EasyStepper(
                 activeStep: _activeStep,
