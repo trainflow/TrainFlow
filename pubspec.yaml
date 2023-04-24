@@ -37,6 +37,7 @@ dependencies:
   drift: ^2.7.0
   flutter_bloc: ^8.1.2
   bloc: ^8.1.1
+  easy_stepper: ^0.5.0
   logger: any  #for logging purpose
 
 dev_dependencies:
@@ -66,7 +67,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - asset/2023-04-21 182731.png
+    - assets/background-image.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
